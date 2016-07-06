@@ -4,11 +4,15 @@
 		<meta charset="utf-8"></meta>
 		<title>WATCH-APP</title>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.8.1/jquery.fullPage.min.css">
+		<link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css">
+		<link rel="stylesheet" href="styles/watch-app.css">
 	</head>
 	<body>
 		<div id="fullpage">
-			<div class="section">
-				<h1>这是第一屏</h1>
+			<div class="section section1">
+				<h1>它，终于来了</h1>
+				<p>Apple Watch拥有各种各样的个性化表盘，令你随心改变、自定义的设置。在自定义的表盘上，可以增加天气、下一个活动等实用信息。可以显示用户的心跳信息。Apple Watch与iPhone 配合使用，同全球标准时间的误差不超过 50 毫秒。</p>
+				<!-- <img class="imgHero" src="img/hero_sunset_large_2x.jpg" alt=""> -->
 			</div>
 			<div class="section">
 				<!-- <h1>这是第二屏</h1> -->
@@ -24,16 +28,17 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.8.1/jquery.fullPage.js"></script>
 		<script>
 			$(function(){
-			$('#fullpage').fullpage({
-				sectionsColor: ['#c23531','#2f4554', '#61a0a8', '#d48265'],
-				controlArrows: true,
-				scrollBar: false,
-				navigation: true,
-				navigationPosition: 'right',
-				navigationTooltips: ['#c23531','#2f4554', '#61a0a8', '#d48265'],
-				slidesNavigation: true
+				$('#fullpage').fullpage({
+					//sectionsColor: ['#c23531','#2f4554', '#61a0a8', '#d48265'],
+					verticalCentered: false,
+					controlArrows: true,
+					scrollBar: false,
+					navigation: true,
+					navigationPosition: 'right',
+					navigationTooltips: ['#c23531','#2f4554', '#61a0a8', '#d48265'],
+					slidesNavigation: true
+				});
 			});
-		});
 		</script>
 		
 	</body>
