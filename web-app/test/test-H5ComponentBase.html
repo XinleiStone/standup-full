@@ -36,12 +36,28 @@
         </div>
 
         <script type="text/javascript">
-            var ctg = {
+            var cfg = {
+                type: 'base',
                 text: '文本',
-                width: 500
+                width: 514,
+                height: 306,
+                center: true,
+                css: {
+                    bottom: 0,
+                    opacity: 0
+                },
+                animateIn: {
+                    bottom: 80,
+                    opacity: 1
+                },
+                animateOut: {
+                    bottom: 0,
+                    opacity: 0
+                },
+                bg: 'p1_people.png'
             };
 
-            var h5 = H5ComponentBase(ctg);
+            var h5 = new H5ComponentBase('myName', cfg);
             h5.appendTo('.iphone');
             console.log(h5);
 
