@@ -26,10 +26,25 @@
 
     <script type="text/javascript">
 
-        $(function (){
-            
+        $(function() {
 
+            $('#h5').fullpage({
+                onLeave: function(index, nextIndex, direction) {
+                    $('#h5').find('.page').eq(index - 1).trigger('onLeave');
+                },
+                afterLoad: function(achorLink, index) {
+                    $('#h5').find('.page').eq(index - 1).trigger('onLoad');
+                }
+            });
+            $('.page').on("onLeave", function() {
+                console.log($(this).attr('id'));
+                $(this).find('.component').fadeOut();
+            });
 
+            $('.page').on("onLoad", function() {
+                console.log($(this).attr('id'));
+                $(this).find('.component').fadeIn();
+            });
         });
 
     </script>
@@ -38,6 +53,34 @@
     <!-- 用于验证 fullpage.js 切换页面，以及内容组织结构可用，组件能够进行动画 -->
 
         <div id="h5">
+            <div class="page section" id="page-1">
+                <div class="component slide">logo</div>
+                <div class="component slide">slogan</div>
+            </div>
+            <div class="page section" id="page-2">
+                <div class="component slide">logo</div>
+                <div class="component slide">desc</div>
+            </div>
+            <div class="page section" id="page-3">
+                <div class="component slide"></div>
+                <div class="component slide"></div>
+            </div>
+            <div class="page section" id="page-4">
+                <div class="component slide"></div>
+                <div class="component slide"></div>
+            </div>
+            <!-- <div class="page section">
+                <div class="component">logo</div>
+                <div class="component">slogan</div>
+            </div>
+            <div class="page section">
+                <div class="component">logo</div>
+                <div class="component">desc</div>
+            </div>
+            <div class="page section">
+                <div class="component">logo</div>
+                <div class="component">desc</div>
+            </div> -->
         </div>
 
     </body>
