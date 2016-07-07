@@ -19,6 +19,10 @@
     <link rel="stylesheet" type="text/css" href="../css/H5ComponentBase.css">
 
     <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+        }
     </style>
 
 
@@ -30,6 +34,17 @@
     <!-- 内容组织管理，有可能会加载若干个资源 -->
 
     <script type="text/javascript">
+        $(function() {
+            var h5 = new H5();
+
+            h5.addPage('myName1', 'text1')
+                    .addComment('myComment1', {
+                        text: 'component1-1'
+                    })
+                .addPage('myName2', 'text2')
+                .addPage('myName3', 'text3')
+                .loader();
+        });
     </script>
 </body>
 
