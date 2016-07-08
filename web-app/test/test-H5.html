@@ -38,11 +38,47 @@
             var h5 = new H5();
 
             h5.addPage('myName1', 'text1')
-                    .addComment('myComment1', {
-                        text: 'component1-1'
+                    .addComponent('myComment1', {
+                        text: 'component1-1',
+                        width: 400,
+                        height: 100,
+                        css: {
+                            backgroundColor: 'red',
+                            top: 200,
+                            opacity: 0
+                        },
+                        center: true,
+                        animateIn: {opacity: 1},
+                        animateOut: {opacity: 0}
                     })
                 .addPage('myName2', 'text2')
+                    .addComponent('myComment2', {
+                        text: 'component1-2',
+                        width: 400,
+                        height: 100,
+                        css: {
+                            backgroundColor: 'blue',
+                            top: 200,
+                            opacity: 0
+                        },
+                        center: true,
+                        animateIn: {opacity: 1},
+                        animateOut: {opacity: 0}
+                    })
                 .addPage('myName3', 'text3')
+                    .addComponent('myComment3', {
+                        text: 'component1-3',
+                        width: 400,
+                        height: 100,
+                        css: {
+                            backgroundColor: 'yellow',
+                            top: 200,
+                            opacity: 0
+                        },
+                        center: true,
+                        animateIn: {opacity: 1},
+                        animateOut: {opacity: 0}
+                    })
                 .loader();
         });
     </script>

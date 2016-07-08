@@ -1,9 +1,9 @@
 /* 基本图文组件对象 */
 var H5ComponentBase = function(name, cfg) {
 	"use strict";
-	var className = "h5_component_name_" + name;
+	var className = "h5_component_" + name;
 	var id = ('h5_component_base_' + Math.random()).replace('.', '_');
-	var $component = $('<div class="h5_component_base '+ className +'"></div>');
+	var $component = $('<div class="h5_component_base h5_component '+ className +'"></div>');
 
 	cfg.text && $component.text(cfg.text);
 	cfg.width && $component.width(cfg.width / 2);

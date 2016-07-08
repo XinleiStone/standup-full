@@ -1,7 +1,7 @@
 /* 内容管理对象 */
 var H5 = function() {
 	this.id = ('h5_' + Math.random()).replace('.', '_');
-	this.el = $('<div class="h5" id="'+ this.id +'">').hide();
+	this.el = $('<div class="h5" id="' + this.id + '">').hide();
 	this.page = [];
 	$('body').append(this.el);
 
@@ -17,20 +17,21 @@ var H5 = function() {
 		}
 		this.el.append($page);
 		this.page.push($page);
+
 		return this;
 	};
 
 	this.addComponent = function(name, cfg) {
 		cfg = cfg || {};
-		cfg = $.$.extend({
+		cfg = $.extend({
 			type: 'base'
 		}, cfg);
 
 		var $page = this.page.slice(-1)[0];
 		var $component = {};
-		switch(cfg.type) {
+		switch (cfg.type) {
 			case 'base':
-				$component = new H5ComponentBase();
+				$component = new H5ComponentBase(name, cfg);
 				break;
 			default:
 				break;
@@ -41,7 +42,16 @@ var H5 = function() {
 	};
 
 	this.loader = function() {
-		this.el.show().fullpage();
+		this.el.show().fullpage({
+			onLeave: function(index, nextIndex, direction) {
+				$(this).find('.h5_component').trigger('onLeave');
+			},
+			afterLoad: function(achorLink, index) {
+				$(this).find('.h5_component').trigger('onLoad');
+			}
+		});
+
+		this.page[0].find('.h5_component').trigger('onLoad');
 	};
 
 	return this;
