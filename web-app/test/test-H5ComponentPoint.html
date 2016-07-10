@@ -40,7 +40,41 @@
         </div>
 
         <script type="text/javascript">
+            var cfg = {
+                type: 'base',
+                
+                width: 300,
+                height: 300,
+                data: [
+                    ['A项目', .4, 'green'],
+                    ['B项目', .2, 'yellow'],
+                    ['C项目', .2, 'blue']
+                ],
+                center: true,
+                css: {
+                    bottom: 0,
+                    opacity: 0
+                },
+                animateIn: {
+                    bottom: 80,
+                    opacity: 1
+                },
+                animateOut: {
+                    bottom: 0,
+                    opacity: 0
+                },
+                text: 'p1_people.png'
+            };
 
+            var h5 = new H5ComponentPoint('myName', cfg);
+            h5.appendTo('.iphone');
+            console.log(h5);
+
+            var leave = false;
+            $('body').click(function() {
+                leave = !leave;
+                $('.h5_component_base').trigger(leave ? 'onLoad' : 'onLeave');
+            });
         </script>
 
     </body>
