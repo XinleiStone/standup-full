@@ -12,3 +12,26 @@ html
         = htmlData
         p!= htmlData
         p \#{htmlData}
+        br
+        br
+        - var obj = {course: "jade", score: 90}
+        - for (var k in obj)
+            p #{obj[k]}
+        - each value, key in obj
+            div #{key} : #{value}
+        - var arr = ["node", "jade", "express"]
+        each i in arr
+            p= i
+
+        mixin lesson
+            p mixin mixin
+        +lesson
+        +lesson
+
+        mixin study(name, course)
+            p #{name}
+            ul
+                each item in course
+                    li #{item}
+
+        +study('tom', ['js', 'css', 'html'])
