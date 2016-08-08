@@ -1,0 +1,14 @@
+doctype html
+html
+    head
+        title jade
+        meta(charset="utf-8")
+    body
+        h1 node hi
+        h2 转义与非转义
+        - var foo = "jade"
+        - var htmlData = "<script></script>;<span>abc</span>";
+        p #{foo} is "nice"
+        = htmlData
+        p!= htmlData
+        p \#{htmlData}
