@@ -4,8 +4,8 @@ var Wechat = require("./wechat");
 var getRawBody = require('raw-body');
 var util = require('./util');
 
-module.exports = function(opts) {
-    //var wechat = Wechat(opts);
+module.exports = function(opts, handler) {
+    var wechat = new Wechat(opts);
     return function *(next) {
         var that = this;
 
@@ -26,44 +26,63 @@ module.exports = function(opts) {
             }
         } else if (this.method === 'POST') {
             if (sha !== signature) {
+                console.log("signature wrong");
                 this.body = "wrong";
                 return false;
             }
 
-            var data = yield getRawBody(this.req, {
+            var data = yield (getRawBody(this.req, {
                 length: this.length,
                 limit: '1mb',
                 encoding: this.charset
-            });
+            }));
 
             var content = yield util.parseXMLAsync(data);
+            var message = util.formatMessage(content.xml);
 
-            console.log(content)
+            this.body = content;
+            this.weixin = message;
 
-            var message = yield util.formatMessage(content.xml);
+            yield handler.call(this, next);
 
+            wechat.reply.call(this);
 
-            if ('event' === message.MsgType) {
+            /*if ('event' === message.MsgType) {
                 if (message.Event === 'subscribe') {
                     var now = new Date().getTime();
-                    console.log(now + 'dddd')
                     that.status = 200;
-                    that.type = 'application/xml';
-                    var reply = "<xml>"
-                        + "<ToUserName><![CDATA[" + message.ToUserName + "]]></ToUserName>"
-                        + "<FromUserName><![CDATA[" + message.FromUserName + "]]></FromUserName>"
-                        + "<CreateTime>"+ now +"</CreateTime>"
-                        + "<MsgType><![CDATA[text]]></MsgType>"
-                        + "<Content><![CDATA[this is a test]]></Content>"
-                        + "<MsgId>1234567890123456</MsgId>"
-                        + "</xml>";
-
-                    //console.log(reply);
+                    that.type = "application/xml";
+                    var reply = "<xml>" +
+                        "<ToUserName><![CDATA["+ message.ToUserName +"]]></ToUserName>" +
+                        "<FromUserName><![CDATA["+ message.FromUserName +"]]></FromUserName>" +
+                        "<CreateTime>"+ now +"</CreateTime>" +
+                        "<MsgType><![CDATA[text]]></MsgType>" +
+                        "<Content><![CDATA[欢迎关注~]]></Content>" +
+                        "</xml>";
+                    console.log(reply);
                     that.body = reply;
 
                     return;
                 }
-            }
+            }*/
+
+            /*if (message.MsgType === "text") {
+                var content1 = message.Content;
+                var reply = "你说的这个" + content1 + "太复杂了！";
+                if (content1 === "1") {
+                    reply =
+                        "<xml>" +
+                        "<ToUserName><![CDATA[" + message.FromUserName + "]]></ToUserName>" +
+                        "<FromUserName><![CDATA[" + message.ToUserName + "]]></FromUserName>" +
+                        "<CreateTime>" + (new Date().getTime()) + "</CreateTime>" +
+                        "<MsgType><![CDATA[text]]></MsgType>" +
+                        "<Content><![CDATA[欢迎关注~]]></Content>" +
+                        "</xml>";
+                    console.log(reply)
+                }
+
+                this.body = reply;
+            }*/
         }
         
     };
