@@ -6,7 +6,7 @@ var config = {
     wechat: {
         appID: "wx9e9b463320c7e367",
         appSecret: "b18ea6e7c9c441c281a4d4ca2c5c32a4",
-        token: "liuxinleiwechatvisxian",
+        token: "liuxinleiwechatvisxianceshi",
         getAccessToken: function() {
             return util.readFileAsync(wechat_file);
         },

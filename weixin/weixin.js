@@ -37,11 +37,22 @@ exports.reply = function* (next) {
             }*/];
         } else if (content === "3") {
             var data = yield wechatApi.uploadMaterial('image', __dirname + "/images/2.jpg");
+            console.log(data)
             reply = {
                 type: "image",
                 mediaId: data.media_id
             };
             
+        } else if (content === "music") {
+            var data = yield wechatApi.uploadMaterial('music', __dirname + "/images/2.jpg");
+            console.log(data)
+            reply = {
+                type: "music",
+                title: "音乐",
+                description: "desc",
+                musicUrl: "http://mp3.haoduoge.com/s/2016-08-11/1470914098.mp3",
+                thumbMediaId: data.media_id
+            };
         }
 
         this.body = reply;

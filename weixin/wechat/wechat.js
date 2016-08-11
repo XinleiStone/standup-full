@@ -6,7 +6,12 @@ var fs = require("fs");
 var prefix = 'https://api.weixin.qq.com/cgi-bin/';
 var api = {
     accessToken: prefix + 'token?grant_type=client_credential',
-    upload: prefix + "media/upload?"
+    temporary: {
+        upload: prefix + "media/upload?"
+    },
+    permonent: {
+        upload: prefix + "material/add_material"
+    }
 };
 
 function Wechat(opts) {
@@ -61,8 +66,8 @@ function Wechat(opts) {
             that
                 .fetchAccessToken()
                 .then(function(data) {
-                    var url = api.upload + 'access_token=' + data.accessToken + '&type=' + type;
-
+                    var url = api.upload + 'access_token=' + data.access_token + '&type=' + type;
+                    console.log(url)
                     request({
                             method: "POST",
                             fromData: form,
