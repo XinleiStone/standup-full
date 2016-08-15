@@ -1,0 +1,7 @@
+CompilerOracle: exclude jregex/Pretokenizer.next
+Listening for transport dt_socket at address: 8000
+15:19:13,306 INFO  ~ Starting F:\workspace\noteJPAsecure\noteJPA
+15:19:13,311 INFO  ~ Module secure is available (D:\Program Files\play-1.2.7\modules\secure)
+15:19:14,133 WARN  ~ You're running Play! in DEV mode
+15:19:14,241 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+~ Server is up and running

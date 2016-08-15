@@ -1,0 +1,13 @@
+<div class="container">
+	<div class="panel panel-default">
+		<div class="panel-heading">标题</div>
+		<div class="panel-body">{{note.title}}</div>
+	</div>
+
+	<div class="panel panel-default">
+		<pre class="panel-heading">内容</pre>
+		<pre class="panel-body noteContent">{{note.content}}</pre>
+	</div>
+	<button ui-sref="modify({id:note.id})" class="btn btn-default">修改</button>
+	<button ng-click="delete()" class="btn btn-default">Delete</button>
+</div>

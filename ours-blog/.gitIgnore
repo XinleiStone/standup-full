@@ -1,0 +1,9 @@
+.idea
+.classpath
+.project
+/modules
+/eclipse
+.settings
+/conf/application.conf
+/tmp
+/public/javascripts/reactjs-build/.module-cache/
