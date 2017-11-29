@@ -1,0 +1,46 @@
+extends layout
+block content
+    h1 node hi
+    h2 转义与非转义
+    - var foo = "jade"
+    - var htmlData = "<script></script>;<span>abc</span>";
+    p #{foo} is "nice"
+    = htmlData
+    p!= htmlData
+    p \#{htmlData}
+    br
+    br
+    - var obj = {course: "jade", score: 90}
+    - for (var k in obj)
+        p #{obj[k]}
+    - each value, key in obj
+        div #{key} : #{value}
+    - var arr = ["node", "jade", "express"]
+    each i in arr
+        p= i
+
+    mixin lesson
+        p mixin mixin
+    +lesson
+    +lesson
+
+    mixin study(name, course)
+        p #{name}
+        ul
+            each item in course
+                li #{item}
+
+    +study('Tom', ['js', 'css', 'html'])
+
+    mixin team(name)
+        h3 #{name}
+        if block
+            block
+        else 
+            p team no person
+
+    +team('Jack')
+        p team person one
+
+    block desc
+        p desc from index
